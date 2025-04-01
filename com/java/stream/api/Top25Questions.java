@@ -18,17 +18,19 @@ public class Top25Questions {
 
         System.out.println("2. Find the total number of elements present in the list..");
         System.out.println(nums.stream().count());
-        System.out.println("3. find the all even integer in the given list...");
 
+        System.out.println("3. find the all even integer in the given list...");
         List<Integer> evenList= nums.stream().filter(n->n%2==0).collect(Collectors.toList());
         System.out.println(evenList);
+
         System.out.println("4. find the all odd integer in the given list...");
         List<Integer> oddList= nums.stream().filter(n->n%2!=0).collect(Collectors.toList());
         System.out.println(oddList);
+
         System.out.println("5. Find out numbers starting with 5...");
         nums.stream().filter(n-> n.toString().startsWith("5")).forEach(System.out::println);
-        System.out.println("6. Find duplicate element in the list...");
 
+        System.out.println("6. Find duplicate element in the list...");
         Set<Integer> temp=new HashSet<>();
         nums.stream().filter(n->!temp.add(n)).forEach(System.out::println);
 
@@ -38,6 +40,7 @@ public class Top25Questions {
 
         System.out.println("8. Sort all the values in accending present in it using stream api...");
         nums.stream().sorted().forEach(System.out::println);
+
         System.out.println("9. Sort all the values in descending present in it using stream api...");
         nums.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println);
 
@@ -50,7 +53,7 @@ public class Top25Questions {
         }
 
         System.out.println("11. Java 8 program to perform square on list elements and filter numbers greater than 50...");
-        nums.stream().map(x->x*x).filter(n->n>50).forEach(System.out::println);
+        nums.stream().map(x->x*x).filter(n -> n>50).forEach(System.out::println);
 
         System.out.println("12. Java program to sort an array and convert array into stream...");
         Arrays.sort(arr);
@@ -58,7 +61,7 @@ public class Top25Questions {
 
         System.out.println("13. How to use map to convert words in uppercase...");
         List<String> words= Arrays.asList("Dev","Byte","School","College","Byte");
-        words.stream().map(e->e.toUpperCase()).forEach(System.out::println);
+        words.stream().map(e -> e.toUpperCase()).forEach(System.out::println);
 
         System.out.println("14.Maximum element present in an array..");
         Arrays.stream(arr).max().ifPresent(System.out::println);
@@ -93,7 +96,7 @@ public class Top25Questions {
         System.out.println("count of number:"+result);
 
 
-        System.out.println("21. Finds only duplicate elements with its count from from the string ArrayList");
+        System.out.println("21. Finds only duplicate elements with its count from the string ArrayList");
         Map<String,Long> map = words.stream().collect(Collectors.groupingBy(s->s,Collectors.counting()));
         map.entrySet().stream().filter(m->m.getValue()>1).forEach(m -> System.out.println(m.getKey()+": "+m.getValue()));
 
@@ -120,5 +123,26 @@ public class Top25Questions {
                 .mapToObj(c -> (char) c)  // Convert int to Character
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         System.out.println(charCount);
+
+        System.out.println("25. program to sum of a List");
+        List<Integer> numbers2=Arrays.asList(1,2,3,4,5);
+        int sum = numbers2.stream().reduce(0,Integer::sum);
+        System.out.println(sum);
+
+        System.out.println("26. Find first number greater than 3");
+
+        Optional<Integer> first= numbers2.stream().filter(num -> num>3).findFirst();
+        first.ifPresent(num -> System.out.println("First num greated than 3-> "+num));
+
+        System.out.println("27. allMatch() example with all numbers are even.");
+        boolean allEven=numbers2.stream().allMatch(num-> num%2==0);
+        System.out.println(allEven);
+
+        System.out.println("28. anyMatch() example any number is greater than 4");
+
+        boolean anyMatch = numbers2.stream().anyMatch(num -> num>50);
+        System.out.println(anyMatch);
+
+
     }
 }
